@@ -26,3 +26,9 @@ app.get("/authenticated", (req, res) => {
   runners.delete(user);
   res.end();
 });
+
+app.get("/webhook", (req, res) => {
+  const { hub } = req.query;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ 'hub.challenge': hub.challenge }));
+})
