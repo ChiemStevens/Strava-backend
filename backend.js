@@ -28,7 +28,14 @@ app.get("/authenticated", (req, res) => {
 });
 
 app.get("/webhook", (req, res) => {
-  const { hub } = req.query;
+  console.log(req.query)
+  const verify_token = req.query['hub.verify_token'];
+  const challenge = req.query['hub.challenge'];
+  console.log(verify_token)
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ 'hub.challenge': hub.challenge }));
+  res.end(JSON.stringify({ 'hub.challenge': challenge }));
+})
+
+app.post("/webhook", (req, res) => {
+  console.log(req)
 })
