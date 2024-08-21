@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
     runners.set(user, code);
     res.send(`Code: ${code}`);
   }
+  res.send("Hello World!");
 });
 
 app.get("/runners", (req, res) => {
