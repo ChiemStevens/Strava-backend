@@ -38,5 +38,6 @@ app.get("/webhook", (req, res) => {
 })
 
 app.post("/webhook", (req, res) => {
-  console.log(req)
+  console.log(req.body); // Log the POST request body
+  res.end();
 })
