@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 let runners = new Map();
