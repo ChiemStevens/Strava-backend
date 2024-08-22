@@ -1,4 +1,6 @@
 const express = require("express");
+const mqtt = require("mqtt")
+
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -44,7 +46,17 @@ app.get("/webhook", (req, res) => {
 })
 
 app.post("/webhook", (req, res) => {
-  console.log(req.body); // Log the POST request body
+  const opts = {
+    username: process.env.MQTT_USERNAME,
+    password: process.env.MQTT_PASSWORD
+  }
+
+  client = mqtt.connect(process.env.MQTT_URL, opts)
+
+  client.publish("Strava/activities", JSON.stringify(req.body));
+
+  // client.end()
+
   res.end();
 })
 
