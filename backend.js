@@ -47,3 +47,7 @@ app.post("/webhook", (req, res) => {
   console.log(req.body); // Log the POST request body
   res.end();
 })
+
+app.get("/ping", (req, res) => {
+  res.end('pong!')
+})
