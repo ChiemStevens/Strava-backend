@@ -46,12 +46,18 @@ app.get("/webhook", (req, res) => {
 })
 
 app.post("/webhook", (req, res) => {
+  console.log(req.body);
+
   const opts = {
     username: process.env.MQTT_USERNAME,
     password: process.env.MQTT_PASSWORD
   }
 
   client = mqtt.connect(process.env.MQTT_URL, opts)
+
+  client.on("error", (error) => {
+    console.log(error);
+  })
 
   client.publish("Strava/activities", JSON.stringify(req.body));
 
