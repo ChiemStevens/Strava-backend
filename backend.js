@@ -15,11 +15,7 @@ const server = app.listen(port, () => console.log(`Example app listening on port
 let runners = new Map();
 
 app.get("/", (req, res) => {
-  const opts = {
-    username: process.env.MQTT_USERNAME,
-    password: process.env.MQTT_PASSWORD
-  }
-  console.log(opts);
+
   const { user, state, scope, code } = req.query;
   console.log(`User: ${user}, State: ${state}, Scope: ${scope}, Code: ${code}`);
   if (user!=undefined && code!=undefined) {
